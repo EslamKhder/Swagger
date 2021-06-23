@@ -1,5 +1,6 @@
 package com.spring.swagger.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
