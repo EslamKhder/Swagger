@@ -37,17 +37,31 @@ public class EmployeeController {
         );
     }
     @GetMapping("/show")
-    @Tag(name = "Employee Controller Layer")
-    public Employee show(@RequestParam int id){
-        return employeeRepository.findById((long) id).get();
+    @Operation(description = "show Employee",summary = "show Employee",
+            tags = "Employee Controller Layer",
+            responses = {
+                    @ApiResponse(responseCode = "200",description = "Success")
+            })
+    public ResponseEntity<Employee> show(@RequestParam int id){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                employeeRepository.findById((long) id).get()
+        );
     }
     @DeleteMapping("/delete")
-    @Tag(name = "Employee Controller Layer")
+    @Operation(description = "delete Employee",summary = "delete Employee",
+            tags = "Employee Controller Layer",
+            responses = {
+                    @ApiResponse(responseCode = "200",description = "Success")
+            })
     public void delete(@RequestParam int id){
         employeeRepository.deleteById((long) id);
     }
     @PutMapping("/edit")
-    @Tag(name = "Employee Controller Layer")
+    @Operation(description = "edit Employee",summary = "edit Employee",
+            tags = "Employee Controller Layer",
+            responses = {
+                    @ApiResponse(responseCode = "200",description = "Ok")
+            })
     public void edit(@RequestBody Employee employee){
         employeeRepository.save(employee);
     }
